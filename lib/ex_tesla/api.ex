@@ -147,7 +147,7 @@ defmodule ExTesla.Api do
   def wake_up(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
     url = "/api/1/vehicles/#{vehicle_id}/wake_up"
-    post(client, url) |> process_response
+    post(client, url, %{}) |> process_response
   end
 
   # Alerts
