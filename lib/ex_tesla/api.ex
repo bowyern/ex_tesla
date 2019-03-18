@@ -131,4 +131,22 @@ defmodule ExTesla.Api do
     url = "/api/1/vehicles/#{vehicle_id}/data_request/drive_state"
     get(client, url) |> process_response
   end
+
+  @doc """
+  Returns a list of nearby Tesla-operated charging stations. (Requires car software version 2018.48 or higher.)
+  """
+  def nearby_charging_sites(%Tesla.Client{} = client, vehicle) do
+    vehicle_id = vehicle["id"]
+    url = "/api/1/vehicles/#{vehicle_id}/nearby_charging_sites"
+    get(client, url) |> process_response
+  end
+
+  @doc """"
+  Wakes up the vehicle from a sleeping state.
+  """
+  def wake_up(%Tesla.Client{} = client, vehicle) do
+    vehicle_id = vehicle["id"]
+    url = "/api/1/vehicles/#{vehicle_id}/wake_up"
+    post(client, url) |> process_response
+  end
 end
