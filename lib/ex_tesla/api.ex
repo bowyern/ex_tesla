@@ -141,7 +141,7 @@ defmodule ExTesla.Api do
     get(client, url) |> process_response
   end
 
-  @doc """"
+  @doc """
   Wakes up the vehicle from a sleeping state.
   """
   def wake_up(%Tesla.Client{} = client, vehicle) do
