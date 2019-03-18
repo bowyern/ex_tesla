@@ -149,4 +149,24 @@ defmodule ExTesla.Api do
     url = "/api/1/vehicles/#{vehicle_id}/wake_up"
     post(client, url) |> process_response
   end
+
+  # Alerts
+
+  @doc """
+  Honks the horn twice.
+  """
+  def honk_horn(%Tesla.Client{} = client, vehicle) do
+    vehicle_id = vehicle["id"]
+    url = "/api/1/vehicles/#{vehicle_id}/command/honk_horn"
+    post(client, url)
+  end
+
+  @doc """
+  Flashes the headlishes once.
+  """
+  def flash_lights(%Tesla.Client{} = client, vehicle) do
+    vehicle_id = vehicle["id"]
+    url = "/api/1/vehicles/#{vehicle_id}/command/flash_lights"
+    post(client, url)
+  end
 end
