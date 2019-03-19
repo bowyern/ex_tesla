@@ -158,7 +158,7 @@ defmodule ExTesla.Api do
   def honk_horn(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
     url = "/api/1/vehicles/#{vehicle_id}/command/honk_horn"
-    post(client, url)
+    post(client, url, %{})
   end
 
   @doc """
@@ -167,6 +167,6 @@ defmodule ExTesla.Api do
   def flash_lights(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
     url = "/api/1/vehicles/#{vehicle_id}/command/flash_lights"
-    post(client, url)
+    post(client, url, %{})
   end
 end
