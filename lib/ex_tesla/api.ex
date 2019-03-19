@@ -73,7 +73,7 @@ defmodule ExTesla.Api do
   defp process_response(result) do
     case result do
       {:ok, %{status: 200, body: %{"response" => response}}} -> {:ok, response}
-      {:ok, %{status: 200, "body" => response}} -> {:ok, response}
+      {:ok, %{status: 200, body: response}} -> {:ok, response}
       {:ok, %{status: 200}} -> {:error, "Got no body in response"}
       {:ok, result} -> {:error, "Got error status #{result.status}"}
       err -> err
