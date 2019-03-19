@@ -73,6 +73,7 @@ defmodule ExTesla.Api do
   defp process_response(result) do
     case result do
       {:ok, %{status: 200, body: %{"response" => response}}} -> {:ok, response}
+      {:ok, %{status: 200, "body" => response}} -> {:ok, response}
       {:ok, %{status: 200}} -> {:error, "Got no body in response"}
       {:ok, result} -> {:error, "Got error status #{result.status}"}
       err -> err
@@ -158,7 +159,7 @@ defmodule ExTesla.Api do
   def honk_horn(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
     url = "/api/1/vehicles/#{vehicle_id}/command/honk_horn"
-    post(client, url, %{})
+    post(client, url, %{}) |> process_response
   end
 
   @doc """
@@ -167,6 +168,6 @@ defmodule ExTesla.Api do
   def flash_lights(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
     url = "/api/1/vehicles/#{vehicle_id}/command/flash_lights"
-    post(client, url, %{})
+    post(client, url, %{}) |> process_response
   end
 end
