@@ -171,6 +171,8 @@ defmodule ExTesla.Api do
     post(client, url, %{}) |> process_response
   end
 
+  # Door Locks
+
   @doc """
   Unlocks the doors to the car. Extends the handles on the S and X.
   """
