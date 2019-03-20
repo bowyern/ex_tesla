@@ -179,7 +179,7 @@ defmodule ExTesla.Api do
   def unlock_doors(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
     url = "/api/1/vehicles/#{vehicle_id}/command/door_unlock"
-    post(client, url, %P{}) |> process_response
+    post(client, url, %{}) |> process_response
   end
 
   @doc """
@@ -188,6 +188,17 @@ defmodule ExTesla.Api do
   def lock_doors(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
     url = "/api/1/vehicles/#{vehicle_id}/command/door_lock"
-    post(client, url, %P{}) |> process_response
+    post(client, url, %{}) |> process_response
+  end
+
+  # Trunk
+
+  @doc """
+  Opens either the front or rear trunk. On the Model S and X, it will also close the rear trunk.
+  """
+  def actuate_trunk(%Tesla.Client{} = client, vehicle, position) do
+    vehicle_id = vehicle["id"]
+    url = "/api/1/vehicles/#{vehicle_id}/command/actuate_trunk"
+    post(client, url, %{"which_trunk" => position}) |> process_response
   end
 end
