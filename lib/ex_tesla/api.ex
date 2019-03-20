@@ -170,4 +170,22 @@ defmodule ExTesla.Api do
     url = "/api/1/vehicles/#{vehicle_id}/command/flash_lights"
     post(client, url, %{}) |> process_response
   end
+
+  @doc """
+  Unlocks the doors to the car. Extends the handles on the S and X.
+  """
+  def unlock_doors(%Tesla.Client{} = client, vehicle) do
+    vehicle_id = vehicle["id"]
+    url = "/api/1/vehicles/#{vehicle_id}/command/door_unlock"
+    post(client, url, %P{}) |> process_response
+  end
+
+  @doc """
+  Locks the doors to the car. Retracts the handles on the S and X, if they are extended.
+  """
+  def lock_doors(%Tesla.Client{} = client, vehicle) do
+    vehicle_id = vehicle["id"]
+    url = "/api/1/vehicles/#{vehicle_id}/command/door_lock"
+    post(client, url, %P{}) |> process_response
+  end
 end
