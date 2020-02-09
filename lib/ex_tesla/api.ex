@@ -93,7 +93,7 @@ defmodule ExTesla.Api do
   """
   def get_vehicle_data(%Tesla.Client{} = client, vehicle) do
     vehicle_id = vehicle["id"]
-    url = "/api/1/vehicles/#{vehicle_id}/data"
+    url = "/api/1/vehicles/#{vehicle_id}/vehicle_data"
     get(client, url) |> process_response
   end
 
